@@ -1,0 +1,29 @@
+# Pipeline de CI para el repositorio de GitHub (integracion GitHub + Azure Pipelines)
+# Se ejecuta en cada push a main del repo de GitHub.
+# Sin trigger de PR: el repo es publico y el agente es self-hosted (seguridad).
+trigger:
+  branches:
+    include:
+    - main
+
+pr: none
+
+pool:
+  name: Default
+
+jobs:
+- job: Build
+  displayName: 'Build y pruebas (GitHub)'
+  steps:
+  - script: echo "Building the project..."
+    displayName: 'Mensaje del tutorial'
+  - task: UseNode@1
+    inputs:
+      version: '22.x'
+    displayName: 'Install Node.js'
+  - script: npm install
+    displayName: 'npm install'
+  - script: npm run build
+    displayName: 'npm run build'
+  - script: npm test
+    displayName: 'npm test'

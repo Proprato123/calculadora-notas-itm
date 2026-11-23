@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de notas ITM</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Calculadora de notas</h1>
+  <p>Calcula tu nota acumulada y cuánto necesitas en lo que falta para pasar la materia.</p>
+</header>
+<main>
+  <section class="card">
+    <div class="fila-top">
+      <label>Materia <input id="materia" type="text" placeholder="Ej: Pruebas y Calidad de Software" maxlength="60"></label>
+      <label>Nota objetivo <input id="objetivo" type="number" min="0.1" max="5" step="0.1" value="3.0"></label>
+    </div>
+    <table>
+      <thead><tr><th>Evaluación</th><th>%</th><th>Nota (0 a 5)</th><th></th></tr></thead>
+      <tbody id="filas"></tbody>
+      <tfoot><tr><td>Total</td><td id="totalPct">0%</td><td colspan="2"></td></tr></tfoot>
+    </table>
+    <div class="acciones">
+      <button id="agregar" type="button" class="sec">+ Agregar evaluación</button>
+      <button id="ejemplo" type="button" class="sec">Cargar ejemplo</button>
+      <button id="limpiar" type="button" class="sec">Limpiar</button>
+      <button id="calcular" type="button">Calcular</button>
+    </div>
+    <p class="ayuda">Deja la nota vacía en las evaluaciones que aún no presentas.</p>
+  </section>
+
+  <section id="resultado" class="card oculto" aria-live="polite">
+    <div class="resumen">
+      <div><span class="etq">Acumulado</span><span id="rAcum" class="valor"></span></div>
+      <div><span class="etq">Evaluado</span><span id="rEval" class="valor"></span></div>
+      <div><span class="etq">Necesitas</span><span id="rNec" class="valor"></span></div>
+    </div>
+    <div class="barra"><div id="barraAcum"></div></div>
+    <p><span id="rEstado" class="estado"></span> <span id="rMensaje"></span></p>
+  </section>
+
+  <section id="errores" class="card error oculto" role="alert"></section>
+</main>
+<footer>
+  <span id="pie">Práctica de Azure DevOps · ITM 2026-2</span>
+  <span id="kv" class="kv">Key Vault: comprobando…</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
